@@ -39,7 +39,48 @@ export const siteSettingsType = defineType({
       name: "navigation",
       title: "Navigation",
       type: "array",
-      of: [{ type: "string" }], // you can create a navLink object
+      of: [
+        {
+          type: "object",
+          name: "navLink",
+          title: "Navigation Link",
+          fields: [
+            {
+              name: "title",
+              title: "Link Title",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "url",
+              title: "URL",
+              type: "string",
+              description: "Internal path (e.g., /about) or external URL (e.g., https://example.com)",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "external",
+              title: "External Link",
+              type: "boolean",
+              description: "Check if this is an external link",
+              initialValue: false,
+            },
+            {
+              name: "openInNewTab",
+              title: "Open in New Tab",
+              type: "boolean",
+              description: "Open link in a new tab/window",
+              initialValue: false,
+            },
+          ],
+          preview: {
+            select: {
+              title: "title",
+              subtitle: "url",
+            },
+          },
+        },
+      ],
       group: "header",
     }),
     defineField({

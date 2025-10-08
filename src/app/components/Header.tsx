@@ -30,15 +30,47 @@ export default async function Header() {
                     {/* Navigation */}
                     {siteSettings?.navigation && siteSettings.navigation.length > 0 && (
                         <nav className="hidden md:flex space-x-8">
-                            {siteSettings.navigation.map((item: string, index: number) => (
-                                <a
-                                    key={index}
-                                    href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                                    className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-                                >
-                                    {item}
-                                </a>
-                            ))}
+                            {siteSettings.navigation.map((item: any, index: number) => {
+                                // Handle both old string format and new object format
+                                if (typeof item === 'string') {
+                                    return (
+                                        <Link
+                                            key={index}
+                                            href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                            className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                                        >
+                                            {item}
+                                        </Link>
+                                    );
+                                }
+                                
+                                // Handle new navLink object format
+                                const isExternal = item.external || item.url.startsWith('http');
+                                
+                                if (isExternal) {
+                                    return (
+                                        <a
+                                            key={index}
+                                            href={item.url}
+                                            target={item.openInNewTab ? '_blank' : undefined}
+                                            rel={item.openInNewTab ? 'noopener noreferrer' : undefined}
+                                            className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                                        >
+                                            {item.title}
+                                        </a>
+                                    );
+                                }
+                                
+                                return (
+                                    <Link
+                                        key={index}
+                                        href={item.url}
+                                        className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                                    >
+                                        {item.title}
+                                    </Link>
+                                );
+                            })}
                         </nav>
                     )}
                 </div>
