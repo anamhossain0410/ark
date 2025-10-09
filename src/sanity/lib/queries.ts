@@ -24,7 +24,7 @@ export const SITE_QUERY = defineQuery(`
 `)
 
 export const POSTS_QUERY =
-  defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{
+  defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...50]{
   _id,
   title,
   slug,
