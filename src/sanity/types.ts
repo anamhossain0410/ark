@@ -20,6 +20,7 @@ export type SiteSettings = {
   _updatedAt: string;
   _rev: string;
   siteTitle?: string;
+  siteDescription?: string;
   logo?: {
     asset?: {
       _ref: string;
@@ -30,6 +31,7 @@ export type SiteSettings = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   navigation?: Array<{
@@ -41,10 +43,17 @@ export type SiteSettings = {
     _key: string;
   }>;
   footerText?: string;
+  socialLinks?: Array<{
+    platform?: "twitter" | "facebook" | "instagram" | "linkedin" | "github" | "youtube";
+    url?: string;
+    _key: string;
+  }>;
   defaultPage?: string;
   blogSettings?: {
     postsPerPage?: number;
     showAuthor?: boolean;
+    showDate?: boolean;
+    enableComments?: boolean;
   };
 };
 
