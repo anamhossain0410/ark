@@ -6,7 +6,7 @@ export default async function Footer() {
     const siteSettings = await client.fetch(SITE_QUERY);
 
     // Handle case when no site settings exist
-    console.log('siteSettings', siteSettings);
+    // console.log('siteSettings', siteSettings);
     
     return (
         <footer className="bg-gray-800 text-white">
@@ -18,7 +18,7 @@ export default async function Footer() {
                     <div className="social-links">
                     {/* {siteSettings.navigation.map((item: NonNullable<SiteSettings['navigation']>[number] | string, index: number) => { */}
                     {siteSettings?.socialLinks?.map((socialLink: NonNullable<SiteSettings['socialLinks']>[number], index: number) => (
-                        <a className="social-link mx-2" href={socialLink.url} key={socialLink._key}>
+                        <a className="social-link mx-2" href={socialLink.url} key={`${index} - ${socialLink._key}`}>
                             {socialLink.platform}
                         </a>
                     ))}

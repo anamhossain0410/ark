@@ -6,7 +6,7 @@ export default function About() {
                 
                 <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
                     <p className="text-blue-800 text-lg leading-relaxed">
-                        Welcome to our culinary journey! We're passionate about sharing delicious recipes, 
+                        Welcome to our culinary journey! We are passionate about sharing delicious recipes, 
                         baking tips, and food stories that bring people together around the table.
                     </p>
                 </div>
@@ -19,13 +19,13 @@ export default function About() {
                 </p>
 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                    We believe that cooking and baking are more than just activities—they're ways to 
+                    We believe that cooking and baking are more than just activities—they are ways to 
                     express creativity, show love, and create lasting memories. Every recipe we share 
                     has been tested in our own kitchen, often multiple times, to ensure it works 
                     perfectly for home cooks of all skill levels.
                 </p>
 
-                <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">What You'll Find Here</h2>
+                <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">What You will Find Here</h2>
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                     <div className="bg-white p-6 rounded-lg shadow-sm border">
                         <h3 className="text-xl font-semibold text-gray-800 mb-3">🍰 Baking Recipes</h3>
@@ -59,8 +59,8 @@ export default function About() {
 
                 <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Our Mission</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                    We're on a mission to make cooking and baking accessible, enjoyable, and 
-                    rewarding for everyone. Whether you're a complete beginner or an experienced 
+                    We are on a mission to make cooking and baking accessible, enjoyable, and 
+                    rewarding for everyone. Whether you are a complete beginner or an experienced 
                     home chef, we want to inspire you to try new recipes, experiment with flavors, 
                     and most importantly, have fun in the kitchen.
                 </p>
@@ -69,7 +69,7 @@ export default function About() {
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Get In Touch</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Have a question about a recipe? Want to share your own cooking success story? 
-                        We'd love to hear from you! Connect with us on social media or drop us a line.
+                        We would love to hear from you! Connect with us on social media or drop us a line.
                     </p>
                     <div className="flex space-x-4">
                         <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">

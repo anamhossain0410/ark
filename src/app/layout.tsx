@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SITE_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
-import { SiteSettings } from "@/sanity/types";
+// import { SiteSettings } from "@/sanity/types";
 // Dynamic metadata generation
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await client.fetch(SITE_QUERY);
@@ -25,7 +25,7 @@ export default async function RootLayout({
 }>) {
   const siteSettings = await client.fetch(SITE_QUERY);
   const favicon = siteSettings?.favicon?.asset?.url;
-  console.log('favicon', favicon);
+  // console.log('favicon', favicon);
   // debugger;
   return (
     <html lang="en">

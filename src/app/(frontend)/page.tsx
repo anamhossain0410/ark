@@ -18,9 +18,9 @@ export default async function Page() {
     // Limit posts based on site settings
     const limitedPosts = posts.slice(0, postsPerPage);
     
-    console.log('Posts per page setting:', postsPerPage);
-    console.log('Total posts available:', posts.length);
-    console.log('Posts being displayed:', limitedPosts.length);
+    // console.log('Posts per page setting:', postsPerPage);
+    // console.log('Total posts available:', posts.length);
+    // console.log('Posts being displayed:', limitedPosts.length);
     
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

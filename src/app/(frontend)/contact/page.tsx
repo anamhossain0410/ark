@@ -6,9 +6,9 @@ export default function Contact() {
                 
                 <div className="bg-green-50 border-l-4 border-green-400 p-6 mb-8">
                     <p className="text-green-800 text-lg leading-relaxed">
-                        We'd love to hear from you! Whether you have questions about recipes, 
+                        We would love to hear from you! Whether you have questions about recipes, 
                         want to share your baking success stories, or just want to say hello, 
-                        we're here to help and connect.
+                        we are re here to help and connect.
                     </p>
                 </div>
 
@@ -165,7 +165,7 @@ export default function Contact() {
                     <div className="space-y-4">
                         <div className="bg-white p-6 rounded-lg shadow-sm border">
                             <h3 className="font-semibold text-gray-800 mb-2">Can I request a specific recipe?</h3>
-                            <p className="text-gray-600">Absolutely! We love hearing your recipe requests. Send us a message with your idea and we'll do our best to create it for you.</p>
+                            <p className="text-gray-600">Absolutely! We love hearing your recipe requests. Send us a message with your idea and we will do our best to create it for you.</p>
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow-sm border">
                             <h3 className="font-semibold text-gray-800 mb-2">Do you offer cooking classes or workshops?</h3>
@@ -173,7 +173,7 @@ export default function Contact() {
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow-sm border">
                             <h3 className="font-semibold text-gray-800 mb-2">Can I share my own recipes with you?</h3>
-                            <p className="text-gray-600">We'd love to see your creations! Tag us on social media or send us photos of your dishes. We might even feature them on our blog!</p>
+                            <p className="text-gray-600">We would love to see your creations! Tag us on social media or send us photos of your dishes. We might even feature them on our blog!</p>
                         </div>
                     </div>
                 </div>
