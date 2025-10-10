@@ -12,7 +12,7 @@ type PostCardProps = POSTS_QUERYResult[0] & {
 
 export function PostCard(props: PostCardProps) {
   const { title, author, mainImage, publishedAt, categories, showAuthor = true } = props
-  console.log('PostCardProps', props);
+  // console.log('PostCardProps', props);
 
   return (
     <Link className="group" href={`/posts/${props.slug!.current}`}>
