@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { createDataAttribute } from "next-sanity";
-import { POST_QUERYResult } from "@/sanity/types";
+// import { POST_QUERYResult } from "@/sanity/types";
 import { client } from "@/sanity/lib/client";
 import { useOptimistic } from "next-sanity/hooks";
 
@@ -13,27 +13,39 @@ export const createDataAttributeConfig = {
   baseUrl: typeof stega.studioUrl === "string" ? stega.studioUrl : "",
 };
 
+// Define a proper type for related posts
+type RelatedPost = {
+  _key: string;
+  _id: string;
+  title: string;
+  slug: { current: string };
+};
+
 export function RelatedPosts({
   relatedPosts,
   documentId,
   documentType,
 }: {
-  relatedPosts: NonNullable<POST_QUERYResult>["relatedPosts"];
+  relatedPosts: RelatedPost[] | null | undefined;
   documentId: string;
   documentType: string;
 }) {
-  const posts = useOptimistic<
-    NonNullable<POST_QUERYResult>["relatedPosts"] | undefined,
-    NonNullable<POST_QUERYResult>
-  >(relatedPosts, (state, action) => {
-    if (action.id === documentId && action?.document?.relatedPosts) {
-      // Optimistic document only has _ref values, not resolved references
-      return action.document.relatedPosts.map(
-        (post) => state?.find((p) => p._key === post._key) ?? post
-      );
+  const posts = useOptimistic<RelatedPost[] | null | undefined, unknown>(
+    relatedPosts, 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (state, action: any) => {
+      if (action.id === documentId && action?.document?.relatedPosts) {
+        const relatedPosts = action.document.relatedPosts as unknown;
+        if (Array.isArray(relatedPosts)) {
+          // Optimistic document only has _ref values, not resolved references
+          return relatedPosts.map(
+            (post: unknown) => state?.find((p: RelatedPost) => p._key === (post as RelatedPost)._key) ?? post
+          ) as RelatedPost[];
+        }
+      }
+      return state;
     }
-    return state;
-  });
+  );
   if (!posts) {
     return null;
   }
@@ -50,7 +62,7 @@ export function RelatedPosts({
             path: "relatedPosts",
           }).toString()}
         >
-          {posts.map((post) => (
+          {posts.map((post: RelatedPost) => (
             <li
               key={post._key}
               className="p-4 bg-blue-50 sm:w-1/3 flex-shrink-0"
