@@ -252,6 +252,13 @@
         },
         "optional": true
       },
+      "copyright": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "defaultPage": {
         "type": "objectAttribute",
         "value": {

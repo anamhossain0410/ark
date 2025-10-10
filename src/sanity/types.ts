@@ -48,6 +48,7 @@ export type SiteSettings = {
     url?: string;
     _key: string;
   }>;
+  copyright?: string;
   defaultPage?: string;
   blogSettings?: {
     postsPerPage?: number;

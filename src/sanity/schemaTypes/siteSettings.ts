@@ -13,6 +13,7 @@ export const siteSettingsType = defineType({
     { name: "footer", title: "Footer" },
     { name: "pages", title: "Pages" },
     { name: "blog", title: "Blog" },
+    { name: "scripts", title: "Scripts" },
   ],
   fields: [
     defineField({
@@ -31,6 +32,7 @@ export const siteSettingsType = defineType({
       description: "A brief description of your site (for SEO)",
       rows: 3,
     }),
+    // Group: Header - Logo
     defineField({
       name: "logo",
       title: "Logo",
@@ -48,6 +50,16 @@ export const siteSettingsType = defineType({
           validation: (Rule) => Rule.required(),
         },
       ],
+    }),
+    // Group: Header - FavIcon
+    defineField({
+      name: "favicon",
+      title: "FavIcon",
+      type: "image",
+      group: "header",
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: "navigation",
@@ -158,6 +170,15 @@ export const siteSettingsType = defineType({
       ],
       group: "footer",
     }),
+    // copyright field
+    defineField({
+      name: "copyright",
+      title: "Copyright",
+      type: "text",
+      group: "footer",
+      rows: 3,
+      placeholder: "© 2025 Your Company. All rights reserved.",
+    }),
     defineField({
       name: "defaultPage",
       title: "Default Page Slug",
@@ -206,6 +227,31 @@ export const siteSettingsType = defineType({
         },
       ],
       group: "blog",
+    }),
+    // Group: Scripts
+    // field: Google Analytics
+    defineField({
+      name: "googleAnalytics",
+      title: "Google Analytics",
+      type: "text",
+      group: "scripts",
+      rows: 3,
+    }),
+    // field: Header Scripts
+    defineField({
+      name: "headerScripts",
+      title: "Header Scripts",
+      type: "text",
+      group: "scripts",
+      rows: 3,
+    }),
+    // field: Additional CSS
+    defineField({
+      name: "additionalCSS",
+      title: "Additional CSS",
+      type: "text",
+      group: "scripts",
+      rows: 3,
     }),
   ],
   preview: {
