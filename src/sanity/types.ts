@@ -34,6 +34,18 @@ export type SiteSettings = {
     alt?: string;
     _type: "image";
   };
+  favicon?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   navigation?: Array<{
     title?: string;
     url?: string;
@@ -42,7 +54,7 @@ export type SiteSettings = {
     _type: "navLink";
     _key: string;
   }>;
-  footerText?: string;
+  footerTitle?: string;
   socialLinks?: Array<{
     platform?: "twitter" | "facebook" | "instagram" | "linkedin" | "github" | "youtube";
     url?: string;
@@ -56,6 +68,9 @@ export type SiteSettings = {
     showDate?: boolean;
     enableComments?: boolean;
   };
+  googleAnalytics?: string;
+  headerScripts?: string;
+  additionalCSS?: string;
 };
 
 export type Post = {
@@ -331,12 +346,20 @@ export type AllSanitySchemaTypes = SiteSettings | Post | Author | Category | Blo
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: SITE_QUERY
-// Query: *[_type == "siteSettings"][0] {        _id,        _type,        siteTitle,        logo {            asset-> {                _id,                url,                metadata            }        },        navigation,        footerText,        defaultPage,        blogSettings {            postsPerPage,            showAuthor        }    }
+// Query: *[_type == "siteSettings"][0] {        _id,        _type,        siteTitle,        siteDescription,        logo {            asset-> {                _id,                url,                metadata            }        },        favicon {            asset-> {                _id,                url,                metadata            }        },        navigation,        footerTitle,        socialLinks,        copyright,        defaultPage,        blogSettings {            postsPerPage,            showAuthor,            showDate,            enableComments        },        googleAnalytics,        headerScripts,        additionalCSS    }
 export type SITE_QUERYResult = {
   _id: string;
   _type: "siteSettings";
   siteTitle: string | null;
+  siteDescription: string | null;
   logo: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: SanityImageMetadata | null;
+    } | null;
+  } | null;
+  favicon: {
     asset: {
       _id: string;
       url: string | null;
@@ -351,12 +374,23 @@ export type SITE_QUERYResult = {
     _type: "navLink";
     _key: string;
   }> | null;
-  footerText: string | null;
+  footerTitle: string | null;
+  socialLinks: Array<{
+    platform?: "facebook" | "github" | "instagram" | "linkedin" | "twitter" | "youtube";
+    url?: string;
+    _key: string;
+  }> | null;
+  copyright: string | null;
   defaultPage: string | null;
   blogSettings: {
     postsPerPage: number | null;
     showAuthor: boolean | null;
+    showDate: boolean | null;
+    enableComments: boolean | null;
   } | null;
+  googleAnalytics: string | null;
+  headerScripts: string | null;
+  additionalCSS: string | null;
 } | null;
 // Variable: POSTS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...50]{  _id,  title,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
@@ -518,7 +552,7 @@ export type POST_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n    *[_type == \"siteSettings\"][0] {\n        _id,\n        _type,\n        siteTitle,\n        logo {\n            asset-> {\n                _id,\n                url,\n                metadata\n            }\n        },\n        navigation,\n        footerText,\n        defaultPage,\n        blogSettings {\n            postsPerPage,\n            showAuthor\n        }\n    }\n": SITE_QUERYResult;
+    "\n    *[_type == \"siteSettings\"][0] {\n        _id,\n        _type,\n        siteTitle,\n        siteDescription,\n        logo {\n            asset-> {\n                _id,\n                url,\n                metadata\n            }\n        },\n        favicon {\n            asset-> {\n                _id,\n                url,\n                metadata\n            }\n        },\n        navigation,\n        footerTitle,\n        socialLinks,\n        copyright,\n        defaultPage,\n        blogSettings {\n            postsPerPage,\n            showAuthor,\n            showDate,\n            enableComments\n        },\n        googleAnalytics,\n        headerScripts,\n        additionalCSS\n    }\n": SITE_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...50]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true,\n  },\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key,\n    ...@->{_id, title, slug}\n  }\n}": POST_QUERYResult;

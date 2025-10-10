@@ -118,11 +118,11 @@ export const siteSettingsType = defineType({
       validation: (Rule) => Rule.max(10).warning("Too many navigation items might clutter the header"),
     }),
     defineField({
-      name: "footerText",
-      title: "Footer Text",
+      name: "footerTitle",
+      title: "Footer Title",
       type: "string",
       group: "footer",
-      placeholder: "© 2025 Your Company. All rights reserved.",
+      placeholder: "Footer Title",
     }),
     defineField({
       name: "socialLinks",

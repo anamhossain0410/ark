@@ -6,6 +6,7 @@ export const SITE_QUERY = defineQuery(`
         _id,
         _type,
         siteTitle,
+        siteDescription,
         logo {
             asset-> {
                 _id,
@@ -13,13 +14,27 @@ export const SITE_QUERY = defineQuery(`
                 metadata
             }
         },
+        favicon {
+            asset-> {
+                _id,
+                url,
+                metadata
+            }
+        },
         navigation,
-        footerText,
+        footerTitle,
+        socialLinks,
+        copyright,
         defaultPage,
         blogSettings {
             postsPerPage,
-            showAuthor
-        }
+            showAuthor,
+            showDate,
+            enableComments
+        },
+        googleAnalytics,
+        headerScripts,
+        additionalCSS
     }
 `)
 

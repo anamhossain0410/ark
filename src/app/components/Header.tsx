@@ -25,6 +25,7 @@ export default async function Header() {
                             )}
                             <h1 className="text-xl font-bold text-gray-900">
                                 {siteSettings?.siteTitle || "Site Title"}
+                                {siteSettings?.siteDescription && <span className="text-gray-500 text-sm block"> {siteSettings.siteDescription}</span>}
                             </h1>
                         </div>
                     </Link>
