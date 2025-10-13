@@ -11,6 +11,9 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('author').title('Authors'),
       
       S.divider(),
+
+      S.documentTypeListItem("page").title("Pages"),
+      S.documentTypeListItem("faq").title("FAQs"),
       
       // Singleton - Site Settings
       S.listItem()
@@ -29,6 +32,6 @@ export const structure: StructureResolver = (S) =>
       ...S.documentTypeListItems().filter(
         (item) => 
           item.getId() && 
-          !['post', 'category', 'author', 'siteSettings'].includes(item.getId()!)
+          !['post', 'category', 'author', 'siteSettings', 'page', 'faq'].includes(item.getId()!)
       ),
     ])
