@@ -7,7 +7,9 @@ export const faqsType = defineType({
   fields: [
     defineField({
       name: "title",
-      type: "string",
+      title: "Title",
+      type: "multilingualText",
+      description: "Title in English, French, and Arabic",
     }),
     defineField({
       name: "faqs",

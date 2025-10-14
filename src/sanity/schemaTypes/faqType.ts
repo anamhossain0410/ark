@@ -7,11 +7,15 @@ export const faqType = defineType({
   fields: [
     defineField({
       name: "title",
-      type: "string",
+      title: "Title",
+      type: "multilingualText",
+      description: "Title in English, French, and Russian",
     }),
     defineField({
       name: "body",
-      type: "blockContent",
+      title: "Body",
+      type: "multilingualBlockContent",
+      description: "Body in English, French, and Russian",
     }),
   ],
 });

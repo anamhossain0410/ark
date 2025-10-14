@@ -5,6 +5,8 @@ import {categoryType} from './categoryType'
 import {postType} from './postType'
 import {authorType} from './authorType'
 import {siteSettingsType} from './siteSettings'
+import {multilingualTextType} from './multilingualTextType'
+import {multilingualBlockContentType} from './multilingualBlockContentType'
 
 import { pageType } from "./pageType";
 import { pageBuilderType } from "./pageBuilderType";
@@ -17,6 +19,7 @@ import { splitImageType } from "./blocks/splitImageType";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     blockContentType, categoryType, postType, authorType, siteSettingsType,
+    multilingualTextType, multilingualBlockContentType,
     pageType,
     pageBuilderType,
     faqType,

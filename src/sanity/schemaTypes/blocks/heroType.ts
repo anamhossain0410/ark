@@ -6,14 +6,19 @@ export const heroType = defineType({
   fields: [
     defineField({
       name: "title",
-      type: "string",
+      title: "Title",
+      type: "multilingualText",
+      description: "Title in English, French, and Arabic",
     }),
     defineField({
       name: "text",
-      type: "blockContent",
+      title: "Text",
+      type: "multilingualBlockContent",
+      description: "Text content in English, French, and Arabic",
     }),
     defineField({
       name: "image",
+      title: "Image",
       type: "image",
     }),
   ],
