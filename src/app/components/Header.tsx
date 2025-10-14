@@ -79,6 +79,12 @@ export default async function Header() {
                             })}
                         </nav>
                     )}
+                    {/* get available languages from schema not siteSettings */}
+                    <nav className="flex space-x-4">
+                        <Link href="/en" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">English</Link>
+                        <Link href="/fr" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">French</Link>
+                        <Link href="/ru" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Russian</Link>
+                    </nav>
                 </div>
             </div>
         </header>
