@@ -9,17 +9,21 @@ type HeroProps = Extract<
   { _type: "hero" }
 >;
 
-export function Hero({ title, text, image }: HeroProps) {
+export function Hero({ title, text, image, language = 'en' }: HeroProps & { language?: 'en' | 'fr' | 'ru' }) {
+  // Extract the English text as default, fallback to other languages if English is not available
+  const displayTitle = title?.[language] || title?.en || title?.fr || title?.ru || '';
+  const displayText = text?.[language] || text?.en || text?.fr || text?.ru || null;
+
   return (
     <section className="isolate w-full aspect-[2/1] py-16 relative overflow-hidden">
       <div className="relative flex flex-col justify-center items-center gap-8 h-full z-20">
-        {title ? (
+        {displayTitle ? (
           <h1 className="text-2xl md:text-4xl lg:text-6xl font-semibold text-white text-pretty max-w-3xl">
-            {title}
+            {displayTitle}
           </h1>
         ) : null}
         <div className="prose-lg lg:prose-xl prose-invert flex items-center">
-          {text ? <PortableText value={text} /> : null}
+          {displayText ? <PortableText value={displayText} /> : null}
         </div>
       </div>
       <div className="absolute inset-0 bg-pink-500 opacity-50 z-10" />
