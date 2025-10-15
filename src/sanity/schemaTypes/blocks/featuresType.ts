@@ -6,7 +6,9 @@ export const featuresType = defineType({
   fields: [
     defineField({
       name: "title",
-      type: "string",
+      title: "Title",
+      type: "multilingualText",
+      description: "Features Title in English, French, and Russian",
     }),
     defineField({
       name: "features",
@@ -18,11 +20,15 @@ export const featuresType = defineType({
           fields: [
             defineField({
               name: "title",
-              type: "string",
+              title: "Title",
+              type: "multilingualText",
+              description: "Feature Title in English, French, and Russian",
             }),
             defineField({
               name: "text",
-              type: "string",
+              title: "Text",
+              type: "multilingualBlockContent",
+              description: "Feature Text in English, French, and Russian",
             }),
           ],
         }),
