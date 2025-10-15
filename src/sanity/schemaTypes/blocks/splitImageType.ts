@@ -16,7 +16,9 @@ export const splitImageType = defineType({
     }),
     defineField({
       name: "title",
-      type: "string",
+      title: "Title",
+      description: "Split Image Title in English, French, and Russian",
+      type: "multilingualText",
     }),
     defineField({
       name: "image",
