@@ -8,7 +8,11 @@ type SplitImageProps = Extract<
   { _type: "splitImage" }
 >;
 
-export function SplitImage({ title, image, orientation }: SplitImageProps) {
+export function SplitImage({ title, image, orientation, language = 'en' }: SplitImageProps & { language?: 'en' | 'fr' | 'ru' }) {
+  // SplitImage title is a simple string, not multilingual
+  // The language parameter is kept for consistency with other blocks
+  // but doesn't affect the display since title is not multilingual
+  
   return (
     <section
       className="container mx-auto flex gap-8 py-16 data-[orientation='imageRight']:flex-row-reverse"

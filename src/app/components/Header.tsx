@@ -3,6 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { SiteSettings } from "@/sanity/types";
 import Image from "next/image";
 import Link from "next/link";
+import { LanguageSelector } from "./LanguageSelector";
 
 export default async function Header() {
     const siteSettings = await client.fetch(SITE_QUERY);
@@ -79,12 +80,8 @@ export default async function Header() {
                             })}
                         </nav>
                     )}
-                    {/* get available languages from schema not siteSettings */}
-                    <nav className="flex space-x-4">
-                        <Link href="/en" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">English</Link>
-                        <Link href="/fr" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">French</Link>
-                        <Link href="/ru" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Russian</Link>
-                    </nav>
+                    {/* Language selector with context */}
+                    <LanguageSelector />
                 </div>
             </div>
         </header>

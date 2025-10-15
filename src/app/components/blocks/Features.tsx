@@ -5,7 +5,11 @@ type FeaturesProps = Extract<
   { _type: "features" }
 >;
 
-export function Features({ features, title }: FeaturesProps) {
+export function Features({ features, title, language = 'en' }: FeaturesProps & { language?: 'en' | 'fr' | 'ru' }) {
+  // Features title and feature content are simple strings, not multilingual
+  // The language parameter is kept for consistency with other blocks
+  // but doesn't affect the display since content is not multilingual
+  
   return (
     <section className="container mx-auto flex flex-col gap-8 py-16">
       {title ? (
