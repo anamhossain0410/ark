@@ -8,7 +8,7 @@ type FeaturesProps = Extract<
 
 export function Features({ features, title, language = 'en' }: FeaturesProps & { language?: 'en' | 'fr' | 'ru' }) {
   // Extract the language-specific content
-  const displayTitle = (title as any)?.[language] || (title as any)?.en || (title as any)?.fr || (title as any)?.ru || '';
+  const displayTitle = title ?.[language] || title ?.en || title ?.fr || title ?.ru || '';
   
   return (
     <section className="container mx-auto flex flex-col gap-8 py-16">
@@ -21,8 +21,8 @@ export function Features({ features, title, language = 'en' }: FeaturesProps & {
       {Array.isArray(features) ? (
         <div className="grid grid-cols-3 gap-8">
           {features.map((feature) => {
-            const displayFeatureTitle = (feature.title as any)?.[language] || (feature.title as any)?.en || (feature.title as any)?.fr || (feature.title as any)?.ru || '';
-            const displayFeatureText = (feature.text as any)?.[language] || (feature.text as any)?.en || (feature.text as any)?.fr || (feature.text as any)?.ru || null;
+            const displayFeatureTitle = feature.title ?.[language] || feature.title ?.en || feature.title ?.fr || feature.title ?.ru || '';
+            const displayFeatureText = feature.text ?.[language] || feature.text ?.en || feature.text ?.fr || feature.text ?.ru || null;
             
             return (
               <div key={feature._key} className="flex flex-col gap-4">

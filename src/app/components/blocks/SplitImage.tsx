@@ -1,20 +1,20 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { PAGE_QUERYResult, MultilingualText } from "@/sanity/types";
+import { PAGE_QUERYResult } from "@/sanity/types";
 import { stegaClean } from "next-sanity";
-import { useLanguage } from "@/app/contexts/LanguageContext";
+// import { useLanguage } from "@/app/contexts/LanguageContext";
 
 type SplitImageProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["content"]>[number],
   { _type: "splitImage" }
 >;
 
-export function SplitImage({ title, image, orientation }: SplitImageProps) {
-  const { language } = useLanguage();
+export function SplitImage({ title, image, orientation, language = 'en' }: SplitImageProps & { language?: 'en' | 'fr' | 'ru' }) {
+  // const { language } = useLanguage();
   
   // Get the title based on current language, fallback to English
-  const multilingualTitle = title as MultilingualText | undefined;
-  const displayTitle = multilingualTitle?.[language] || multilingualTitle?.en;
+  // const multilingualTitle = title as MultilingualText | undefined;
+  const displayTitle = title?.[language] || title?.en || title?.fr || title?.ru || '';
   
   return (
     <section

@@ -16,7 +16,7 @@
 export type SplitImage = {
   _type: "splitImage";
   orientation?: "imageLeft" | "imageRight";
-  title?: string;
+  title?: MultilingualText;
   image?: {
     asset?: {
       _ref: string;
@@ -51,10 +51,10 @@ export type Hero = {
 
 export type Features = {
   _type: "features";
-  title?: string;
+  title?: MultilingualText;
   features?: Array<{
-    title?: string;
-    text?: string;
+    title?: MultilingualText;
+    text?: MultilingualBlockContent;
     _type: "feature";
     _key: string;
   }>;
@@ -779,10 +779,10 @@ export type PAGE_QUERYResult = {
   } | {
     _key: string;
     _type: "features";
-    title?: string;
+    title?: MultilingualText;
     features?: Array<{
-      title?: string;
-      text?: string;
+      title?: MultilingualText;
+      text?: MultilingualBlockContent;
       _type: "feature";
       _key: string;
     }>;
@@ -807,7 +807,7 @@ export type PAGE_QUERYResult = {
     _key: string;
     _type: "splitImage";
     orientation?: "imageLeft" | "imageRight";
-    title?: string;
+    title?: MultilingualText;
     image?: {
       asset?: {
         _ref: string;

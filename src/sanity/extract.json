@@ -32,7 +32,8 @@
         "title": {
           "type": "objectAttribute",
           "value": {
-            "type": "string"
+            "type": "inline",
+            "name": "multilingualText"
           },
           "optional": true
         },
@@ -225,7 +226,8 @@
         "title": {
           "type": "objectAttribute",
           "value": {
-            "type": "string"
+            "type": "inline",
+            "name": "multilingualText"
           },
           "optional": true
         },
@@ -239,14 +241,16 @@
                 "title": {
                   "type": "objectAttribute",
                   "value": {
-                    "type": "string"
+                    "type": "inline",
+                    "name": "multilingualText"
                   },
                   "optional": true
                 },
                 "text": {
                   "type": "objectAttribute",
                   "value": {
-                    "type": "string"
+                    "type": "inline",
+                    "name": "multilingualBlockContent"
                   },
                   "optional": true
                 },
