@@ -25,7 +25,7 @@ export function SplitImage({ title, image, orientation }: SplitImageProps) {
       ) : null}
       <div className="w-1/3 flex items-center">
         {title ? (
-          <h2 className="text-3xl mx-auto md:text-5xl lg:text-8xl font-light text-pink-500 text-pretty max-w-3xl">
+          <h2 className="text-2xl md:text-4xl lg:text-6xl font-semibold text-pink-500 text-pretty max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             {title}
           </h2>
         ) : null}

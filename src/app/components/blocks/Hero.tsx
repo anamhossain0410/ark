@@ -18,11 +18,11 @@ export function Hero({ title, text, image, language = 'en' }: HeroProps & { lang
     <section className="isolate w-full aspect-[2/1] py-16 relative overflow-hidden">
       <div className="relative flex flex-col justify-center items-center gap-8 h-full z-20">
         {displayTitle ? (
-          <h1 className="text-2xl md:text-4xl lg:text-6xl font-semibold text-white text-pretty max-w-3xl">
+          <h1 className="text-2xl md:text-4xl lg:text-6xl font-semibold text-white text-pretty max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {displayTitle}
           </h1>
         ) : null}
-        <div className="prose-lg lg:prose-xl prose-invert flex items-center">
+        <div className="prose-lg lg:prose-xl prose-invert flex items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {displayText ? <PortableText value={displayText} /> : null}
         </div>
       </div>
