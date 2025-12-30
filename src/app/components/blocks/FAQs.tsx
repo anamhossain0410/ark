@@ -1,5 +1,6 @@
-import { PAGE_QUERYResult } from "@/sanity/types";
+import { PAGE_QUERYResult, BlockContent } from "@/sanity/types";
 import { PortableText } from "next-sanity";
+import { getLocalizedText, getLocalizedBlockContent } from "@/app/lib/languageUtils";
 
 type FAQsProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["content"]>[number],
@@ -8,11 +9,11 @@ type FAQsProps = Extract<
 
 export function FAQs({ _key, title, faqs, language = 'en' }: FAQsProps & { language?: 'en' | 'fr' | 'ru' }) {
     // console.log('faqs', faqs);
-    const displayTitle = title?.[language] || title?.en || title?.fr || title?.ru || '';
+    const displayTitle = getLocalizedText(title, language);
     const displayFaqs = faqs?.map((faq) => ({
       ...faq,
-      title: faq.title?.[language] || faq.title?.en || faq.title?.fr || faq.title?.ru || '',
-      body: faq.body?.[language] || faq.body?.en || faq.body?.fr || faq.body?.ru || null,
+      title: getLocalizedText(faq.title, language),
+      body: getLocalizedBlockContent(faq.body, language),
     }));
     // console.log('displayFaqs', displayFaqs);
   return (
@@ -37,7 +38,7 @@ export function FAQs({ _key, title, faqs, language = 'en' }: FAQsProps & { langu
                 </span>
               </summary>
               <div className="pb-4">
-                {faq.body ? <PortableText value={faq.body} /> : null}
+                {faq.body ? <PortableText value={faq.body as BlockContent} /> : null}
               </div>
             </details>
           ))}

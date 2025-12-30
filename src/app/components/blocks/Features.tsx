@@ -1,5 +1,6 @@
-import { PAGE_QUERYResult } from "@/sanity/types";
+import { PAGE_QUERYResult, BlockContent } from "@/sanity/types";
 import { PortableText } from "next-sanity";
+import { getLocalizedText, getLocalizedBlockContent } from "@/app/lib/languageUtils";
 
 type FeaturesProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["content"]>[number],
@@ -8,7 +9,7 @@ type FeaturesProps = Extract<
 
 export function Features({ features, title, language = 'en' }: FeaturesProps & { language?: 'en' | 'fr' | 'ru' }) {
   // Extract the language-specific content
-  const displayTitle = title ?.[language] || title ?.en || title ?.fr || title ?.ru || '';
+  const displayTitle = getLocalizedText(title, language);
   
   return (
     <section className="container mx-auto flex flex-col gap-8 py-16">
@@ -21,8 +22,8 @@ export function Features({ features, title, language = 'en' }: FeaturesProps & {
       {Array.isArray(features) ? (
         <div className="grid grid-cols-3 gap-8">
           {features.map((feature) => {
-            const displayFeatureTitle = feature.title ?.[language] || feature.title ?.en || feature.title ?.fr || feature.title ?.ru || '';
-            const displayFeatureText = feature.text ?.[language] || feature.text ?.en || feature.text ?.fr || feature.text ?.ru || null;
+            const displayFeatureTitle = getLocalizedText(feature.title, language);
+            const displayFeatureText = getLocalizedBlockContent(feature.text, language);
             
             return (
               <div key={feature._key} className="flex flex-col gap-4">
@@ -31,7 +32,7 @@ export function Features({ features, title, language = 'en' }: FeaturesProps & {
                 </h3>
                 {displayFeatureText ? (
                   <div className="prose prose-lg text-slate-600">
-                    <PortableText value={displayFeatureText} />
+                    <PortableText value={displayFeatureText as BlockContent} />
                   </div>
                 ) : null}
               </div>

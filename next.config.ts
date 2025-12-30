@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Note: i18n configuration is not supported in App Router
+  // Internationalization is handled through the LanguageContext
   // async redirects() {
   //   return await fetchRedirects();
   // },

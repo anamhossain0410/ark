@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-type Language = 'en' | 'fr' | 'ru';
+export type Language = 'en' | 'fr' | 'ru';
 
 interface LanguageContextType {
   language: Language;
@@ -14,16 +14,28 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('en');
 
-  // Initialize language from localStorage or default
+  // Initialize language from localStorage, browser preference, or default
   useEffect(() => {
     // Check if we're in the browser
     if (typeof window !== 'undefined') {
-      // Get language from localStorage or default to 'en'
+      // Get language from localStorage first
       const savedLanguage = localStorage.getItem('preferred-language') as Language;
       if (savedLanguage && ['en', 'fr', 'ru'].includes(savedLanguage)) {
         setLanguage(savedLanguage);
+        return;
       }
-      // If no saved language, default to 'en' (already set in useState)
+
+      // If no saved language, try to detect from browser
+      const browserLanguage = navigator.language.split('-')[0] as Language;
+      if (['en', 'fr', 'ru'].includes(browserLanguage)) {
+        setLanguage(browserLanguage);
+        // Save the detected language
+        localStorage.setItem('preferred-language', browserLanguage);
+        return;
+      }
+
+      // Fallback to English
+      setLanguage('en');
     }
   }, []);
 

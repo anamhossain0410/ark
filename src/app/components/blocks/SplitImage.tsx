@@ -2,6 +2,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { PAGE_QUERYResult } from "@/sanity/types";
 import { stegaClean } from "next-sanity";
+import { getLocalizedText } from "@/app/lib/languageUtils";
 // import { useLanguage } from "@/app/contexts/LanguageContext";
 
 type SplitImageProps = Extract<
@@ -13,8 +14,7 @@ export function SplitImage({ title, image, orientation, language = 'en' }: Split
   // const { language } = useLanguage();
   
   // Get the title based on current language, fallback to English
-  // const multilingualTitle = title as MultilingualText | undefined;
-  const displayTitle = title?.[language] || title?.en || title?.fr || title?.ru || '';
+  const displayTitle = getLocalizedText(title, language);
   
   return (
     <section

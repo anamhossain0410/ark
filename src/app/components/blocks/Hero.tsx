@@ -2,7 +2,8 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 // import { Title } from "@/app/components/Title";
 import { urlFor } from "@/sanity/lib/image";
-import { PAGE_QUERYResult } from "@/sanity/types";
+import { PAGE_QUERYResult, BlockContent } from "@/sanity/types";
+import { getLocalizedText, getLocalizedBlockContent } from "@/app/lib/languageUtils";
 
 type HeroProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["content"]>[number],
@@ -10,9 +11,9 @@ type HeroProps = Extract<
 >;
 
 export function Hero({ title, text, image, language = 'en' }: HeroProps & { language?: 'en' | 'fr' | 'ru' }) {
-  // Extract the English text as default, fallback to other languages if English is not available
-  const displayTitle = title?.[language] || title?.en || title?.fr || title?.ru || '';
-  const displayText = text?.[language] || text?.en || text?.fr || text?.ru || null;
+  // Extract localized content using utility functions
+  const displayTitle = getLocalizedText(title, language);
+  const displayText = getLocalizedBlockContent(text, language);
 
   return (
     <section className="isolate w-full aspect-[2/1] py-16 relative overflow-hidden">
@@ -23,7 +24,7 @@ export function Hero({ title, text, image, language = 'en' }: HeroProps & { lang
           </h1>
         ) : null}
         <div className="prose-lg lg:prose-xl prose-invert flex items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {displayText ? <PortableText value={displayText} /> : null}
+          {displayText ? <PortableText value={displayText as BlockContent} /> : null}
         </div>
       </div>
       <div className="absolute inset-0 bg-pink-500 opacity-50 z-10" />

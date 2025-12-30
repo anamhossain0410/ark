@@ -28,7 +28,7 @@ export default async function RootLayout({
   // console.log('favicon', favicon);
   // debugger;
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       {/* favicon from site Settings */}
       {favicon && <link rel="icon" href={favicon} />}
       {/* add google analytics script */}
